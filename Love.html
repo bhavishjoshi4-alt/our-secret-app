@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff4d88">
+
+  <title>For My Love</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#fff6f8;
+      text-align:center;
+    }
+
+    button{
+      padding:12px 24px;
+      border:none;
+      border-radius:12px;
+      background:#ff4d88;
+      color:white;
+      font-size:16px;
+    }
+
+    #passwordPage,
+    #welcomepage,
+    #secondPage{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+    }
+
+    #secondPage{
+      display:none;
+    }.question-card{
+  background:white;
+  padding:20px;
+  margin:20px auto;
+  max-width:400px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.option{
+  display:block;
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#ffb3c6;
+  color:#333;
+  font-size:16px;
+}
+
+.option:disabled{
+  opacity:0.8;
+}
+
+.result{
+  margin-top:10px;
+  font-weight:bold;
+}
+/* ❤️ HEART ANIMATION (MOBILE SAFE) */
+.heart{
+  position: fixed;
+  bottom: -20px;
+  font-size: 18px;
+  pointer-events: none;
+  animation: floatUp 5s linear forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes floatUp{
+  from{
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  to{
+    transform: translateY(-100vh) scale(1.3);
+    opacity: 0;
+  }
+}
+ /* ===== GALLERY STYLES (STEP 5.2) ===== */
+
+.gallery {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.gallery h1 {
+  color: #e91e63;
+  margin-bottom: 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+ </style>
+</head>
+
+<body>
+
+  <!-- PASSWORD PAGE -->
+  <div id="passwordPage">
+    <h1>🔐 Our Secret Love</h1>
+    <input id="pwd" type="password" placeholder="Enter password">
+
+    <br><br>
+    <button onclick="checkPassword()">Unlock</button>
+  </div>
+<!-- WELCOME PAGE -->
+<div id="welcomePage" style="display:none; min-height:100vh; 
+  display:flex; flex-direction:column; justify-content:center; align-items:center;">
+
+  <h1>Welcome my little baby girl 💖</h1>
+  <p>This is just for you 😘</p>
+
+  <button onclick="goNext()">Continue ➡️</button>
+</div>
+
+<div id="secondPage" style="display:none; min-height:100vh; padding:20px;">
+
+  <h1>💖 A Little Love Quiz 💖</h1>
+  <p id="scoreBox">Score: 0 / 3</p>
+
+
+  <!-- QUESTION 1 -->
+  <div class="question-card">
+    <h3>1️⃣ What’s the date of our relationship?</h3>
+    <button class="option" onclick="checkAnswer(this, true)">16 may 💕</button>
+    <button class="option" onclick="checkAnswer(this, false)">12 may</button>
+    <button class="option" onclick="checkAnswer(this, false)">10 May</button>
+    <p class="result"></p>
+  </div>
+
+  <!-- QUESTION 2 -->
+  <div class="question-card">
+    <h3>2️⃣ Which car do I love the most?</h3>
+    <button class="option" onclick="checkAnswer(this, false)">Porsche</button>
+    <button class="option" onclick="checkAnswer(this, true)">M5 🏎️</button>
+    <button class="option" onclick="checkAnswer(this, false)">Audi</button>
+    <p class="result"></p>
+  </div>
+
+  <!-- QUESTION 3 -->
+  <div class="question-card">
+    <h3>3️⃣ What do I love doing with you?</h3>
+    <button class="option" onclick="checkAnswer(this, true)">Talking for hours 💬</button>
+    <button class="option" onclick="checkAnswer(this, false)">Sleeping 😴</button>
+    <button class="option" onclick="checkAnswer(this, false)">Arguing 😜</button>
+    <p class="result"></p>
+  </div>
+
+</div>
+<!-- 💌 SURPRISE PAGE -->
+<div id="surprisePage" style="display:none; min-height:100vh; padding:30px;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;">
+
+  <h1>💖 Surprise, My Love 💖</h1>
+
+  <p style="max-width:500px; font-size:18px;">
+    No matter how far we are, my heart always chooses you.  
+    This little app is just a small way to tell you how special you are to me 💕  
+    Happy Valentine’s Day, my baby 🌹
+  </p>
+
+  <h2 id="finalScore"></h2>
+
+  <button onclick="goGallery()">Continue 💝</button>
+</div>
+<!-- GALLERY PAGE -->
+<div id="galleryPage" class="gallery" style="display:none; min-height:100vh; padding:20px;">
+
+  <h1 style="text-align:center;">Our Memories ❤️</h1>
+
+
+  <div class="gallery-grid">
+<img src="ourday.jpg">
+<img src="taddyday.png">
+
+  </div>
+</div>
+
+
+
+  <script>
+function checkPassword(){
+  const pwd = document.getElementById("pwd").value;
+
+  if (pwd === "love123") {
+    document.getElementById("passwordPage").style.display = "none";
+    document.getElementById("welcomePage").style.display = "flex";
+  } else {
+    alert("Wrong password");
+  }
+}
+
+function goNext(){
+  document.getElementById("welcomePage").style.display = "none";
+  document.getElementById("secondPage").style.display = "flex";
+  startHearts(); // ❤️ START HEARTS
+}
+
+
+let score = 0;
+let answered = 0;
+const totalQuestions = 3;
+
+function checkAnswer(button, isCorrect){
+  const card = button.closest(".question-card");
+  const result = card.querySelector(".result");
+  const options = card.querySelectorAll(".option");
+
+  options.forEach(btn => btn.disabled = true);
+  answered++;
+
+  if(isCorrect){
+    score++;
+    button.style.background = "#4CAF50";
+    result.innerText = "💖 Correct!";
+  } else {
+    button.style.background = "#f44336";
+    result.innerText = "😜 Wrong, but cute!";
+  }
+
+  document.getElementById("scoreBox").innerText =
+    `Score: ${score} / ${totalQuestions}`;
+
+  if(answered === totalQuestions){
+  setTimeout(showSurprise, 800);
+}
+
+}
+// ❤️ HEART CONTROL
+let heartTimer = null;
+
+function startHearts(){
+  if(heartTimer) return;
+
+  heartTimer = setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 90 + "vw";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }, 1000); // mobile safe speed
+}
+
+function stopHearts(){
+  clearInterval(heartTimer);
+  heartTimer = null;
+}
+function showSurprise(){
+  stopHearts(); // ❤️ stop hearts
+
+  document.getElementById("secondPage").style.display = "none";
+  document.getElementById("surprisePage").style.display = "flex";
+
+  document.getElementById("finalScore").innerText =
+    `You scored ${score} / ${totalQuestions} 💖`;
+}
+
+function goGallery(){
+  document.getElementById("surprisePage").style.display = "none";
+  document.getElementById("galleryPage").style.display = "block";
+}
+
+
+  </script>
+
+</body>
+</html>
