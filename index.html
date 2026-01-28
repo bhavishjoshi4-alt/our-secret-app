@@ -200,8 +200,42 @@
   <div class="gallery-grid">
 <img src="ourday.jpg">
 <img src="taddyday.png">
+  
+  </div><button onclick="goValentine()">Valentine Week 💕</button>
 
+  <!-- VALENTINE PAGE -->
+<div id="valentinePage" style="display:none; min-height:100vh; padding:20px; text-align:center;">
+
+  <h1>Valentine Week 💕</h1>
+
+  <div class="day-card">
+    <h2>🌹 Rose Day</h2>
+    <img src="rose.jpg">
+    <p>You are the most beautiful rose in my life 🌹❤️</p>
   </div>
+
+  <div class="day-card">
+    <h2>💋 Kiss Day</h2>
+    <img src="kiss.jpg">
+    <p>Every kiss with you feels magical 💋✨</p>
+  </div>
+
+  <div class="day-card">
+    <h2>🤗 Hug Day</h2>
+    <img src="hug.jpg">
+    <p>Your hugs are my safest place 🤗💖</p>
+  </div>
+
+  <div class="day-card">
+    <h2>💖 Valentine’s Day</h2>
+    <img src="valentine.jpg">
+    <p>You are my today and all my tomorrows 💖</p>
+  </div>
+
+  <button onclick="goGallery()">Back ❤️</button>
+</div>
+<!-- END VALENTINE PAGE -->
+
 </div>
 
 
@@ -290,6 +324,11 @@ function goGallery(){
   document.getElementById("surprisePage").style.display = "none";
   document.getElementById("galleryPage").style.display = "block";
 }
+    function goValentine(){
+  document.getElementById("galleryPage").style.display = "none";
+  document.getElementById("valentinePage").style.display = "block";
+}
+
 
 
   </script>
