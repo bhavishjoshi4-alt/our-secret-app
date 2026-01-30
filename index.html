@@ -421,14 +421,39 @@ function showSurprise(){
     `You scored ${score} / ${totalQuestions} 💖`;
 }
 
-function goValentine(){
+function hideAllPages(){
   document.getElementById("surprisePage").style.display = "none";
   document.getElementById("galleryPage").style.display = "none";
+  document.getElementById("valentinePage").style.display = "none";
   document.getElementById("letterPage1").style.display = "none";
   document.getElementById("letterPage2").style.display = "none";
+}
 
+function goGallery(){
+  hideAllPages();
+  document.getElementById("galleryPage").style.display = "block";
+}
+
+function goValentine(){
+  hideAllPages();
   document.getElementById("valentinePage").style.display = "block";
 }
+
+function goLetter(){
+  hideAllPages();
+  document.getElementById("letterPage1").style.display = "block";
+}
+
+function goLetter2(){
+  hideAllPages();
+  document.getElementById("letterPage2").style.display = "block";
+}
+
+function goLetter1(){
+  hideAllPages();
+  document.getElementById("letterPage1").style.display = "block";
+}
+
 
 
 
