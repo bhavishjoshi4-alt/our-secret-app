@@ -260,6 +260,86 @@
   <button onclick="goGallery()">Back ❤️</button>
 </div>
 <!-- END VALENTINE PAGE -->
+<!-- LETTER PAGE 1 -->
+<div id="letterPage1" style="display:none; min-height:100vh; padding:20px;">
+
+  <div class="letter-paper">
+    <h1>My Little Baby Girl 💌</h1>
+
+    <p>
+Hey my little baby girl,<br><br>
+
+Shayad yeh letter sirf kuch emotions hi dikha sake,
+par main try karunga ki sab kuch likh doon.
+Yeh letter sirf aapke liye hai ❤️<br><br>
+
+Sabse pehle, thank you…
+Mere jaisa insaan ko accept karne ke liye.
+Call pe dhamki dene ke baad bhi accept kiya 😂<br><br>
+
+Officially 16 May 2025…
+Vijay Hotel, Sarni…
+Red shirt aur jeans mein aap…
+Woh din kabhi nahi bhoolunga 🙂<br><br>
+
+Starting mein laga nahi tha ki hum itna aage aa jayenge.
+Ek app use karke baat karna,
+calls ke liye app download karna —
+ab funny lagta hai, par tab sab special tha 😂<br><br>
+
+Aapki sabse achi baat?
+The way you understand me.
+Aur aapka bachpana…
+kabhi itna pyaar aata hai uspe.
+    </p>
+
+    <button onclick="goLetter2()">Next Page ➝</button>
+
+  </div>
+</div>
+  <!-- LETTER PAGE 2 -->
+<div id="letterPage2" style="display:none; min-height:100vh; padding:20px;">
+
+  <div class="letter-paper">
+
+    <p>
+Hamara relationship bas relationship nahi hai…
+war hai 😮‍💨
+Chup chup ke baat karna,
+phir bhi mast nikal rahe hain 😚<br><br>
+
+2 November…
+Woh din main kabhi nahi bhool sakta.
+Heartbeats se samajh gaya tha ❤️<br><br>
+
+Late night chats,
+dark jokes,
+good morning messages,
+boyfriend day wish 🫣 —
+sab mere liye bohot special hai.<br><br>
+
+Kabhi main annoying ho jaata hoon,
+gussa karta hoon —
+us sab ke liye sorry.
+Aapne mujhe change kiya hai.<br><br>
+
+Thank you for everything you do for us.
+For loving me the way you do.<br><br>
+
+I love you so so so so so so much,
+my little pinky baby 😚💋🫂💞<br><br>
+
+<span style="font-size:24px; font-family:'Great Vibes', cursive;">
+Forever yours ❤️
+</span>
+    </p>
+
+    <button onclick="goLetter1()">⬅ Back</button>
+    <button onclick="goGallery()">Back to Gallery ❤️</button>
+
+  </div>
+</div>
+
 
 </div>
 
@@ -354,6 +434,20 @@ function goGallery(){
   document.getElementById("valentinePage").style.display = "block";
 }
 
+function goLetter(){
+  document.getElementById("galleryPage").style.display = "none";
+  document.getElementById("letterPage1").style.display = "block";
+}
+
+function goLetter2(){
+  document.getElementById("letterPage1").style.display = "none";
+  document.getElementById("letterPage2").style.display = "block";
+}
+
+function goLetter1(){
+  document.getElementById("letterPage2").style.display = "none";
+  document.getElementById("letterPage1").style.display = "block";
+}
 
 
   </script>
