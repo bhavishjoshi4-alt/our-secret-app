@@ -339,12 +339,26 @@ Forever yours ❤️
     </video>
 
     <br><br>
-
+    <button onclick="goVideo2()">Next Video 🎥</button>
     <button onclick="goLetter()">Back 💌</button>
 
 </div>
 
 <br><br>
+<!-- SECOND VIDEO PAGE -->
+<div id="videoPage2" style="display:none; min-height:100vh; padding:20px; text-align:center;">
+
+    <h1>One More Memory 💕</h1>
+
+    <video style="max-width:90%; border-radius:15px;" controls preload="metadata">
+        <source src="us_video.mp4" type="video/mp4">
+    </video>
+
+    <br><br>
+
+    <button onclick="goVideo()">⬅ Back</button>
+
+</div>
 
 
 <script>
@@ -398,6 +412,10 @@ function goLetter(){
 function goVideo(){
     hideAll();
     document.getElementById("videoPage").style.display="block";
+}
+function goVideo2(){
+    hideAll();
+    document.getElementById("videoPage2").style.display="block";
 }
 
 
