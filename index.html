@@ -1,482 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ff4d88">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
 
-  <title>For My Love</title>
-
-  <style>
-    *{
-      box-sizing: border-box;
-    }
-
-    body{
-      margin:0;
-      font-family: Arial, sans-serif;
-      background:#fff6f8;
-      text-align:center;
-    }
-
-    button{
-      padding:12px 24px;
-      border:none;
-      border-radius:12px;
-      background:#ff4d88;
-      color:white;
-      font-size:16px;
-    }
-
-    #passwordPage,
-    #welcomepage,
-    #secondPage{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-    }
-
-    #secondPage{
-      display:none;
-    }.question-card{
-  background:white;
-  padding:20px;
-  margin:20px auto;
-  max-width:400px;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#fff0f5;
+    text-align:center;
 }
 
-.option{
-  display:block;
-  width:100%;
-  margin:10px 0;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  background:#ffb3c6;
-  color:#333;
-  font-size:16px;
+/* Buttons */
+button{
+    padding:12px 20px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d88;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
-.option:disabled{
-  opacity:0.8;
+button:hover{
+    opacity:0.8;
 }
 
-.result{
-  margin-top:10px;
-  font-weight:bold;
-}
-/* ❤️ HEART ANIMATION (MOBILE SAFE) */
-.heart{
-  position: fixed;
-  bottom: -20px;
-  font-size: 18px;
-  pointer-events: none;
-  animation: floatUp 5s linear forwards;
-  will-change: transform, opacity;
+/* Gallery */
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:15px;
+    padding:20px;
 }
 
-@keyframes floatUp{
-  from{
-    transform: translateY(0) scale(1);
-    opacity: 0.8;
-  }
-  to{
-    transform: translateY(-100vh) scale(1.3);
-    opacity: 0;
-  }
-}
- /* ===== GALLERY STYLES (STEP 5.2) ===== */
-
-.gallery {
-  padding: 40px 20px;
-  text-align: center;
+.gallery-grid img{
+    width:100%;
+    border-radius:12px;
 }
 
-.gallery h1 {
-  color: #e91e63;
-  margin-bottom: 20px;
+/* Letter style */
+.letter-paper{
+    background:#fffdf5;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    font-family: 'Great Vibes', cursive;
+    font-size:18px;
+    text-align:left;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 15px;
+video{
+    border-radius:15px;
 }
-
-.gallery-grid img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-
-.gallery-grid img:hover {
-  transform: scale(1.05);
-}
- </style>
+</style>
 </head>
 
 <body>
 
-  <!-- PASSWORD PAGE -->
-  <div id="passwordPage">
-    <h1>🔐 Our Secret Love</h1>
-    <input id="pwd" type="password" placeholder="Enter password">
-
+<!-- PASSWORD PAGE -->
+<div id="passwordPage">
+    <h1>🔒 Our Secret Love</h1>
+    <input type="password" id="pwd" placeholder="Enter password">
     <br><br>
-    <button onclick="checkPassword()">Unlock</button>
-  </div>
+    <button onclick="checkPassword()">Unlock ❤️</button>
+</div>
+
 <!-- WELCOME PAGE -->
-<div id="welcomePage" style="display:none; min-height:100vh; 
-  display:flex; flex-direction:column; justify-content:center; align-items:center;">
-
-  <h1>Welcome my little baby girl 💖</h1>
-  <p>This is just for you 😘</p>
-
-  <button onclick="goNext()">Continue ➡️</button>
+<div id="welcomePage" style="display:none;">
+    <h1>💖 Welcome My Love 💖</h1>
+    <button onclick="goQuiz()">Continue ➡</button>
 </div>
 
-<div id="secondPage" style="display:none; min-height:100vh; padding:20px;">
-
-  <h1>💖 A Little Love Quiz 💖</h1>
-  <p id="scoreBox">Score: 0 / 3</p>
-
-
-  <!-- QUESTION 1 -->
-  <div class="question-card">
-    <h3>1️⃣ What’s the date of our relationship?</h3>
-    <button class="option" onclick="checkAnswer(this, true)">16 may 💕</button>
-    <button class="option" onclick="checkAnswer(this, false)">12 may</button>
-    <button class="option" onclick="checkAnswer(this, false)">10 May</button>
-    <p class="result"></p>
-  </div>
-
-  <!-- QUESTION 2 -->
-  <div class="question-card">
-    <h3>2️⃣ Which car do I love the most?</h3>
-    <button class="option" onclick="checkAnswer(this, false)">Porsche</button>
-    <button class="option" onclick="checkAnswer(this, true)">M5 🏎️</button>
-    <button class="option" onclick="checkAnswer(this, false)">Audi</button>
-    <p class="result"></p>
-  </div>
-
-  <!-- QUESTION 3 -->
-  <div class="question-card">
-    <h3>3️⃣ What do I love doing with you?</h3>
-    <button class="option" onclick="checkAnswer(this, true)">Talking for hours 💬</button>
-    <button class="option" onclick="checkAnswer(this, false)">Sleeping 😴</button>
-    <button class="option" onclick="checkAnswer(this, false)">Arguing 😜</button>
-    <p class="result"></p>
-  </div>
-
+<!-- QUIZ PAGE -->
+<div id="secondPage" style="display:none;">
+    <h2>💘 Love Quiz 💘</h2>
+    <p>Who loves you the most?</p>
+    <button onclick="showSurprise()">You 😚</button>
 </div>
-<!-- 💌 SURPRISE PAGE -->
-<div id="surprisePage" style="display:none; min-height:100vh; padding:30px;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;">
 
-  <h1>💖 Surprise, My Love 💖</h1>
-
-  <p style="max-width:500px; font-size:18px;">
-    No matter how far we are, my heart always chooses you.  
-    This little app is just a small way to tell you how special you are to me 💕  
-    Happy Valentine’s Day, my baby 🌹
-  </p>
-
-  <h2 id="finalScore"></h2>
-
-  <button onclick="goGallery()">Continue 💝</button>
+<!-- SURPRISE PAGE -->
+<div id="surprisePage" style="display:none;">
+    <h1>💖 Surprise 💖</h1>
+    <p>You scored 1 / 1 💕</p>
+    <button onclick="goGallery()">Continue ➡</button>
 </div>
+
 <!-- GALLERY PAGE -->
-<div id="galleryPage" class="gallery" style="display:none; min-height:100vh; padding:20px;">
+<div id="galleryPage" style="display:none;">
+    <h1>Our Memories ❤️</h1>
 
-  <h1 style="text-align:center;">Our Memories ❤️</h1>
+    <div class="gallery-grid">
+        <img src="ourday.jpg">
+        <img src="taddyday.png">
+        <img src="rose.jpg">
+        <img src="kiss.jpg">
+        <img src="hug.jpg">
+        <img src="valentine.jpg">
+    </div>
 
-
-  <div class="gallery-grid">
-<img src="ourday.jpg">
-<img src="taddyday.png">
-  
-  </div><button onclick="goValentine()">Valentine Week 💕</button>
-</div>  <!-- CLOSE galleryPage -->
-
-  <!-- VALENTINE PAGE -->
-<div id="valentinePage" style="display:none; min-height:100vh; padding:20px; text-align:center;">
-
-  <h1>Valentine Week 💕</h1>
-
-  <div class="day-card">
-    <h2>🌹 Rose Day</h2>
-    <img src="rose.jpg">
-    <p>You are the most beautiful rose in my life 🌹❤️</p>
-  </div>
-
-  <div class="day-card">
-    <h2>💋 Kiss Day</h2>
-    <img src="kiss.jpg">
-    <p>Every kiss with you feels magical 💋✨</p>
-  </div>
-
-  <div class="day-card">
-    <h2>🤗 Hug Day</h2>
-    <img src="hug.jpg">
-    <p>Your hugs are my safest place 🤗💖</p>
-  </div>
-  <div class="day-card">
-  <h2>🍫 Chocolate Day</h2>
-  <img src="chocolate.jpg">
-  <p>Life is sweeter with you 🍫💖</p>
+    <button onclick="goValentine()">Valentine Week 💘</button>
+    <button onclick="goLetter()">Read My Letter 💌</button>
 </div>
 
-<div class="day-card">
-  <h2>🤞 Promise Day</h2>
-  <img src="promise.jpg">
-  <p>I promise to stand by you forever 🤞❤️</p>
+<!-- VALENTINE PAGE -->
+<div id="valentinePage" style="display:none;">
+    <h1>Valentine Week 💕</h1>
+
+    <p>🌹 Rose Day</p>
+    <img src="rose.jpg" width="70%">
+
+    <p>💋 Kiss Day</p>
+    <img src="kiss.jpg" width="70%">
+
+    <p>🤗 Hug Day</p>
+    <img src="hug.jpg" width="70%">
+
+    <p>💖 Valentine's Day</p>
+    <img src="valentine.jpg" width="70%">
+
+    <br>
+    <button onclick="goGallery()">Back ❤️</button>
 </div>
 
-<div class="day-card">
-  <h2>🧸 Teddy Day</h2>
-  <img src="teddy.jpg">
-  <p>You are my comfort teddy 🧸💕</p>
+<!-- LETTER PAGE -->
+<div id="letterPage" style="display:none;">
+
+    <div class="letter-paper">
+        <h2>My Little Baby Girl ❤️</h2>
+        <p>
+        Hey my little baby girl,<br><br>
+        Thank you for accepting me.<br>
+        Thank you for loving me.<br>
+        16 May 2025 will always be special.<br><br>
+        You changed me with your love.<br>
+        I love you so so so much ❤️<br><br>
+        Forever yours ❤️
+        </p>
+    </div>
+
+    <button onclick="goVideo()">Watch Our Video 🎥</button>
+    <button onclick="goGallery()">Back ❤️</button>
 </div>
-
-<div class="day-card">
-  <h2>💍 Propose Day</h2>
-  <img src="propose.jpg">
-  <p>I choose you today and always 💍❤️</p>
-</div>
-
-
-  <div class="day-card">
-    <h2>💖 Valentine’s Day</h2>
-    <img src="valentine.jpg">
-    <p>You are my today and all my tomorrows 💖</p>
-  </div>
-<button onclick="goLetter()">Read My Letter 💌</button>
-
-  <button onclick="goGallery()">Back ❤️</button>
-</div>
-<!-- END VALENTINE PAGE -->
-<!-- LETTER PAGE 1 -->
-<div id="letterPage1" style="display:none; min-height:100vh; padding:20px;">
-
-  <div class="letter-paper">
-    <h1>My Little Baby Girl 💌</h1>
-
-    <p>
-Hey my little baby girl,<br><br>
-
-Shayad yeh letter sirf kuch emotions hi dikha sake,
-par main try karunga ki sab kuch likh doon.
-Yeh letter sirf aapke liye hai ❤️<br><br>
-
-Sabse pehle, thank you…
-Mere jaisa insaan ko accept karne ke liye.
-Call pe dhamki dene ke baad bhi accept kiya 😂<br><br>
-
-Officially 16 May 2025…
-Vijay Hotel, Sarni…
-Red shirt aur jeans mein aap…
-Woh din kabhi nahi bhoolunga 🙂<br><br>
-
-Starting mein laga nahi tha ki hum itna aage aa jayenge.
-Ek app use karke baat karna,
-calls ke liye app download karna —
-ab funny lagta hai, par tab sab special tha 😂<br><br>
-
-Aapki sabse achi baat?
-The way you understand me.
-Aur aapka bachpana…
-kabhi itna pyaar aata hai uspe.
-    </p>
-
-    <button onclick="goLetter2()">Next Page ➝</button>
-
-  </div>
-</div>
-  <!-- LETTER PAGE 2 -->
-<div id="letterPage2" style="display:none; min-height:100vh; padding:20px;">
-
-  <div class="letter-paper">
-
-    <p>
-Hamara relationship bas relationship nahi hai…
-war hai 😮‍💨
-Chup chup ke baat karna,
-phir bhi mast nikal rahe hain 😚<br><br>
-
-2 November…
-Woh din main kabhi nahi bhool sakta.
-Heartbeats se samajh gaya tha ❤️<br><br>
-
-Late night chats,
-dark jokes,
-good morning messages,
-boyfriend day wish 🫣 —
-sab mere liye bohot special hai.<br><br>
-
-Kabhi main annoying ho jaata hoon,
-gussa karta hoon —
-us sab ke liye sorry.
-Aapne mujhe change kiya hai.<br><br>
-
-Thank you for everything you do for us.
-For loving me the way you do.<br><br>
-
-I love you so so so so so so much,
-my little pinky baby 😚💋🫂💞<br><br>
-
-<span style="font-size:24px; font-family:'Great Vibes', cursive;">
-Forever yours ❤️
-</span>
-    </p>
-
-    <button onclick="goLetter1()">⬅ Back</button>
-    <button onclick="goGallery()">Back to Gallery ❤️</button>
-  </div>  <!-- close letter-paper -->
-</div>  <!-- close letterPage2 -->
 
 <!-- VIDEO PAGE -->
-<div id="videoPage" style="display:none; min-height:100vh; padding:20px; text-align:center;">
+<div id="videoPage" style="display:none;">
+    <h1>For You ❤️</h1>
 
-  <h1>For You ❤️</h1>
+    <video style="max-width:90%;" controls preload="metadata">
+        <source src="u_video.mp4" type="video/mp4">
+    </video>
 
-  <video style="max-width:100%; border-radius:15px;" controls preload="metadata">
-    <source src="u_video.mp4" type="video/mp4">
-  </video>
-
-  <br><br>
-
-  <button onclick="goGallery()">Back to Gallery ❤️</button>
-
+    <br><br>
+    <button onclick="goLetter()">Back 💌</button>
 </div>
 
-</div>  
+<script>
 
-  <script>
+function hideAll(){
+    document.getElementById("passwordPage").style.display="none";
+    document.getElementById("welcomePage").style.display="none";
+    document.getElementById("secondPage").style.display="none";
+    document.getElementById("surprisePage").style.display="none";
+    document.getElementById("galleryPage").style.display="none";
+    document.getElementById("valentinePage").style.display="none";
+    document.getElementById("letterPage").style.display="none";
+    document.getElementById("videoPage").style.display="none";
+}
+
 function checkPassword(){
-  const pwd = document.getElementById("pwd").value;
-
-  if (pwd === "love123") {
-    document.getElementById("passwordPage").style.display = "none";
-    document.getElementById("welcomePage").style.display = "flex";
-  } else {
-    alert("Wrong password");
-  }
+    const pwd=document.getElementById("pwd").value;
+    if(pwd==="love123"){
+        hideAll();
+        document.getElementById("welcomePage").style.display="block";
+    } else{
+        alert("Wrong password ❤️");
+    }
 }
 
-function goNext(){
-  document.getElementById("welcomePage").style.display = "none";
-  document.getElementById("secondPage").style.display = "flex";
-  startHearts(); // ❤️ START HEARTS
+function goQuiz(){
+    hideAll();
+    document.getElementById("secondPage").style.display="block";
 }
 
-
-let score = 0;
-let answered = 0;
-const totalQuestions = 3;
-
-function checkAnswer(button, isCorrect){
-  const card = button.closest(".question-card");
-  const result = card.querySelector(".result");
-  const options = card.querySelectorAll(".option");
-
-  options.forEach(btn => btn.disabled = true);
-  answered++;
-
-  if(isCorrect){
-    score++;
-    button.style.background = "#4CAF50";
-    result.innerText = "💖 Correct!";
-  } else {
-    button.style.background = "#f44336";
-    result.innerText = "😜 Wrong, but cute!";
-  }
-
-  document.getElementById("scoreBox").innerText =
-    `Score: ${score} / ${totalQuestions}`;
-
-  if(answered === totalQuestions){
-  setTimeout(showSurprise, 800);
-}
-
-}
-// ❤️ HEART CONTROL
-let heartTimer = null;
-
-function startHearts(){
-  if(heartTimer) return;
-
-  heartTimer = setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-    heart.style.left = Math.random() * 90 + "vw";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-  }, 1000); // mobile safe speed
-}
-
-function stopHearts(){
-  clearInterval(heartTimer);
-  heartTimer = null;
-}
 function showSurprise(){
-  stopHearts(); // ❤️ stop hearts
-
-  document.getElementById("secondPage").style.display = "none";
-  document.getElementById("surprisePage").style.display = "flex";
-
-  document.getElementById("finalScore").innerText =
-    `You scored ${score} / ${totalQuestions} 💖`;
-}
-
-function hideAllPages(){
-  document.getElementById("surprisePage").style.display = "none";
-  document.getElementById("galleryPage").style.display = "none";
-  document.getElementById("valentinePage").style.display = "none";
-  document.getElementById("letterPage1").style.display = "none";
-  document.getElementById("letterPage2").style.display = "none";
-  document.getElementById("videoPage").style.display = "none";
+    hideAll();
+    document.getElementById("surprisePage").style.display="block";
 }
 
 function goGallery(){
-  hideAllPages();
-  document.getElementById("galleryPage").style.display = "block";
+    hideAll();
+    document.getElementById("galleryPage").style.display="block";
 }
 
 function goValentine(){
-  hideAllPages();
-  document.getElementById("valentinePage").style.display = "block";
+    hideAll();
+    document.getElementById("valentinePage").style.display="block";
 }
 
 function goLetter(){
-  hideAllPages();
-  document.getElementById("letterPage1").style.display = "block";
+    hideAll();
+    document.getElementById("letterPage").style.display="block";
 }
 
-function goLetter2(){
-  hideAllPages();
-  document.getElementById("letterPage2").style.display = "block";
-}
-
-function goLetter1(){
-  hideAllPages();
-  document.getElementById("letterPage1").style.display = "block";
-}
-  
 function goVideo(){
-  hideAllPages();
-  document.getElementById("videoPage").style.display = "block";
+    hideAll();
+    document.getElementById("videoPage").style.display="block";
 }
 
-  </script>
+</script>
 
 </body>
 </html>
