@@ -326,6 +326,7 @@ Forever yours ❤️
     </div>
 
     <button onclick="goVideo()">Watch Our Video 🎥</button>
+    <button onclick="goVideo()">Watch Our Video 🎥</button>
     <button onclick="goGallery()">Back ❤️</button>
 </div>
 
@@ -340,6 +341,13 @@ Forever yours ❤️
     <br><br>
     <button onclick="goLetter()">Back 💌</button>
 </div>
+<br><br>
+
+<h2>One More Memory 💕</h2>
+
+<video style="max-width:100%; border-radius:15px;" controls preload="metadata">
+  <source src="us_video.mp4" type="video/mp4">
+</video>
 
 <script>
 
@@ -393,6 +401,11 @@ function goVideo(){
     hideAll();
     document.getElementById("videoPage").style.display="block";
 }
+    function goVideo(){
+    hideAll();
+    document.getElementById("videoPage").style.display="block";
+}
+
 let score = 0;
 let totalQuestions = 3;
 
