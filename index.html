@@ -111,11 +111,40 @@ video{
 </div>
 
 <!-- QUIZ PAGE -->
-<div id="secondPage" style="display:none;">
-    <h2>💘 Love Quiz 💘</h2>
-    <p>Who loves you the most?</p>
-    <button onclick="showSurprise()">You 😚</button>
+<div id="secondPage" style="display:none; min-height:100vh; padding:20px;">
+
+    <h2>💘 A Little Love Quiz 💘</h2>
+    <p id="scoreBox">Score: 0 / 3</p>
+
+    <!-- Question 1 -->
+    <div class="question-card">
+        <h3>1️⃣ What car do I love most? 🚗</h3>
+        <button onclick="checkAnswer(this,true)">M5 🖤</button>
+        <button onclick="checkAnswer(this,false)">Mercedes</button>
+        <button onclick="checkAnswer(this,false)">Audi</button>
+        <p class="result"></p>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-card">
+        <h3>2️⃣ What's my love language? 💕</h3>
+        <button onclick="checkAnswer(this,true)">Physical Touch 🫣</button>
+        <button onclick="checkAnswer(this,false)">Emotional Talk</button>
+        <button onclick="checkAnswer(this,false)">Gifts</button>
+        <p class="result"></p>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-card">
+        <h3>3️⃣ Who do I love most? 👑</h3>
+        <button onclick="checkAnswer(this,false)">Cheku</button>
+        <button onclick="checkAnswer(this,false)">Rohit</button>
+        <button onclick="checkAnswer(this,true)">King Kohli 🐐</button>
+        <p class="result"></p>
+    </div>
+
 </div>
+
 
 <!-- SURPRISE PAGE -->
 <div id="surprisePage" style="display:none;">
@@ -363,6 +392,30 @@ function goLetter(){
 function goVideo(){
     hideAll();
     document.getElementById("videoPage").style.display="block";
+}
+let score = 0;
+let totalQuestions = 3;
+
+function checkAnswer(button, isCorrect) {
+
+    const result = button.parentElement.querySelector(".result");
+
+    if (button.parentElement.classList.contains("answered")) return;
+    button.parentElement.classList.add("answered");
+
+    if (isCorrect) {
+        result.innerText = "Correct 😘";
+        score++;
+    } else {
+        result.innerText = "Wrong 😜";
+    }
+
+    document.getElementById("scoreBox").innerText =
+        "Score: " + score + " / " + totalQuestions;
+
+    if (document.querySelectorAll(".question-card.answered").length === totalQuestions) {
+        setTimeout(showSurprise, 1200);
+    }
 }
 
 </script>
